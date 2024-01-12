@@ -3,6 +3,8 @@ import grapesjs from "grapesjs";
 import React, { useEffect, useState } from "react";
 import "grapesjs/dist/css/grapes.min.css";
 import plugin from "grapesjs-preset-webpage";
+import grapesjsNavbar from "grapesjs-navbar";
+import grapesjsBlocksBasic from "grapesjs-blocks-basic";
 
 function App() {
   const [editor, setEditor] = useState(null);
@@ -11,10 +13,12 @@ function App() {
   useEffect(() => {
     const editor = grapesjs.init({
       container: "#editor",
-      plugins: [plugin],
-      pluginsOpts:{
-        [plugin]: {} 
-      }
+      plugins: [plugin, grapesjsNavbar, grapesjsBlocksBasic],
+      pluginsOpts: {
+        //[plugin]: {},
+        [grapesjsNavbar]: {},
+        [grapesjsBlocksBasic]: {},
+      },
     });
     setEditor(editor);
   }, []);
