@@ -1,30 +1,38 @@
 import "./App.css";
-import grapesjs from "grapesjs";
 import React, { useEffect, useState } from "react";
+import grapesjs from "grapesjs";
+import grapesjsMJML from "grapesjs-mjml";
+import mjmlNL from "grapesjs-mjml/locale/nl";
 import "grapesjs/dist/css/grapes.min.css";
-import plugin from "grapesjs-preset-webpage";
-import grapesjsNavbar from "grapesjs-navbar";
-import grapesjsBlocksBasic from "grapesjs-blocks-basic";
 
 function App() {
   const [editor, setEditor] = useState(null);
 
-  // Initialize GrapesJS editor
   useEffect(() => {
     const editor = grapesjs.init({
-      container: "#editor",
-      plugins: [plugin, grapesjsNavbar, grapesjsBlocksBasic],
+      fromElement: true,
+      container: "#gjs",
+      plugins: [grapesjsMJML],
       pluginsOpts: {
-        //[plugin]: {},
-        [grapesjsNavbar]: {},
-        [grapesjsBlocksBasic]: {},
+        "grapesjs-mjml": {
+          /* ...options */
+        },
       },
     });
     setEditor(editor);
   }, []);
+
   return (
-    <div id="editor">
-      <h1>Hello World Component!</h1>
+    <div id="gjs">
+      <mjml>
+        <mj-body>
+          <mj-section>
+            <mj-column>
+              <mj-text>My Company</mj-text>
+            </mj-column>
+          </mj-section>
+        </mj-body>
+      </mjml>
     </div>
   );
 }
